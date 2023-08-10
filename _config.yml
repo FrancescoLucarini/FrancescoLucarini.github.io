@@ -1,0 +1,22 @@
+theme: jekyll-theme-hacker
+title: Apothiphis_z
+description: My journey in the world of CTF as n00b
+url: FrancescoLucarini.github.io
+author:
+  name: Francesco
+  email: apothiphis.z@gmail.com
+  url: FrancescoLucarini.github.io
+github:
+  repository_url: https://github.com/FrancescoLucarini
+
+
+paginate: 3
+owner: Francesco Lucarini
+year: 2023
+excerpt_separator: <!--excerpt-->
+
+
+
+url: "https://FrancescoLucarini.github.io" #
+baseurl:
+permalink: /:title/
