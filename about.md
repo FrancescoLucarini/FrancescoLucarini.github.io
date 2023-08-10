@@ -9,6 +9,7 @@ My dream job would be Vulnerability Researcher, searching for bugs is so cool es
 
 ![](/img/kernel.png)
 
+A cool or stupid fact about me (judge yourself) I actually love math especially Linear Algebra
 
 **What are my current abilities?**
 
