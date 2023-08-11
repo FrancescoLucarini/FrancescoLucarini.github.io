@@ -14,6 +14,7 @@ Description:
  2. Dynamic Debugging
  3. FLAG!!!
  
+<!--excerpt-->
  # Reverse Engineering
 Let's load up the binary on [https://dogbolt.org/](https://dogbolt.org/) , we are interested in the main function...
 
