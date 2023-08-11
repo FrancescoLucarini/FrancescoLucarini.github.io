@@ -9,12 +9,11 @@ tags: Hacking Pwn
 Description:
 
 > This challenge is not a classical pwn In order to solve it will take skills of your own An excellent primitive you get for free Choose an address and I will write what I see But the author is cursed or perhaps it's just out of spite For the flag that you seek is the thing you will write ASLR isn't the challenge so I'll tell you what I'll give you my mappings so that you'll have a shot.
-
+<!--excerpt-->
  1. Reverse Engineering
  2. Dynamic Debugging
  3. FLAG!!!
  
-<!--excerpt-->
  # Reverse Engineering
 Let's load up the binary on [https://dogbolt.org/](https://dogbolt.org/) , we are interested in the main function...
 
