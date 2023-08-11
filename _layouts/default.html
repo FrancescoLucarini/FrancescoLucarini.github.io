@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang | default: 'en-US' }}">
   <head prefix="og: http://ogp.me/ns#">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="image_src" href="https://francescolucarini.github.io/img/propic.png">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="shortcut icon" href="https://francescolucarini.github.io//img/favicon.ico" />
+    <link rel="shortcut icon" href="https://francescolucarini.github.io/img/favicon.ico" />
     <meta name="twitter:title" content="{{ page.title }} ">
     <meta name="twitter:description" content=" {{ page.excerpt | default: site.description  }}">
+    <meta name="twitter:image" content="https://francescolucarini.github.io/img/propic.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:title"              content="{{ page.title}}" />
     <meta property="og:description"        content="{{ page.excerpt | default: site.description }}" />
+    <meta property="og:image" content="https://francescolucarini.github.io/img/propic.png" />
     {% include head-custom.html %}
   
 {% seo %}
