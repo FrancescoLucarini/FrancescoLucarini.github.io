@@ -6,6 +6,7 @@ tags: Hacking Pwn
 ---
 
 # Hacker's Playground 2023
+
 This 'weekend' (12 hours, for me 4!) Samsung Research Security Team hosted a ctf, despite this weekend was full of events I decided to play solo the Samsun's one and at the end of the day I did 5/7 pwn challs (not too bad for a noob!)
 <!--excerpt-->
 
