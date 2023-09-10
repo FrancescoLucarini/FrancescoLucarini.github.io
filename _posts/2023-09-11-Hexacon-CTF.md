@@ -2,7 +2,7 @@
 layout: post
 title: "A pwn2own like chall? Already Accepted!"
 categories: Pwn
-tags: Hacking Pwn Vulnerability Research
+tags: Hacking Pwn
 ---
 
 #ARMless Router
