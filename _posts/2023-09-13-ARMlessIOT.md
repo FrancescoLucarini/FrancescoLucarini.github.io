@@ -5,7 +5,7 @@ categories: Pwn
 tags: Hacking Pwn Vulnerability Research
 ---
 
-# ARMless Router
+#ARMless Router
 #### IoT: ARMlessRouter ⭐
 
 This pwn2own-style challenge will allow you to remotely compromise an ARM router.
