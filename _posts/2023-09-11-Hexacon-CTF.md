@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "A pwn2own like chall? Already Accepted!"
+title: "A pwn2own like chall?"
 categories: Pwn
 tags: Hacking Pwn
 ---
