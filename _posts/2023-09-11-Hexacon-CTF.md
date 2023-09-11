@@ -6,13 +6,14 @@ tags: Hacking Pwn
 ---
 
 #ARMless Router
-#### IoT: ARMlessRouter ⭐
+IoT: ARMlessRouter ⭐
 
 This pwn2own-style challenge will allow you to remotely compromise an ARM router.
 
 -   1. Map the attack surface
 -   2. Exploit the vulnerable service
 -   3. Retrieve the flag
+
 <!--excerpt-->
 
 When I first saw this challenge the "pwn2own style" made me say that this could be an interesting challenge, above all I would do the "research" on my own. I started it too late and passed the summer studying math for uni, so I didn't completed it, but I achieved some trophies... After some time I solved it locally and wanted to showcase my writeup, if you have read the other ones you know that I try to give the most complete analysis as far as I can.
