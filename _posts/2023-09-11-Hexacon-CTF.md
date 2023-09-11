@@ -1,11 +1,7 @@
 ﻿---
 layout: post
 title: "A pwn2own like chall?"
-<<<<<<< HEAD
 categories: Vuln Research
-=======
-categories: Pwn
->>>>>>> c6fe1b5d7905a6c273dad377a3206c027a38ea86
 tags: Hacking Pwn
 ---
 
