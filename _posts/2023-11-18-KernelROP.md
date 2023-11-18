@@ -331,6 +331,7 @@ If you are asking why the +22 in the trampoline function here is the explanation
        0xffffffff98000f24:	pop    rdx |
        0xffffffff98000f25:	pop    rsi /
        0xffffffff98000f26:	mov    rdi,rsp <- jump here
+
 We can skip all that pop jumping directly at `mov rdi, rsp` instruction.
 Now let's get the rop gadgets, we must assume thay kernel base is 0xffffffff81000000
 
