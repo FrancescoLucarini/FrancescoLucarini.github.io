@@ -4,7 +4,7 @@ title: "Kernel ROP hxp ctf 2020"
 categories: Pwn Kernel
 tags: Hacking Pwn
 ---
-## Kernel ROP, the 'starting point' of kernel pwn
+##Kernel ROP, the 'starting point' of kernel pwn
 
 The first week of October 2023 I had the amazing opportunity to take part to Andrey Konovalov's Training ("Attacking the Linux Kernel") thanks to hexacon organizers... 
 
@@ -508,8 +508,8 @@ int main(){
 	printf("\n[-] This printf should not be reached!\n");
 	return 0;
 }
-
 ```
+
 Running it we get:
 
     / $ ./exploit 
