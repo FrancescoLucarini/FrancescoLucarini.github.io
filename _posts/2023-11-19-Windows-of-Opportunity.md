@@ -7,12 +7,13 @@ tags: Hacking Pwn
 
 ##IMAGINARY CTF 2023 - Windows of Opportunity
 
-Continuing this series of linux kernel exploitation, today we will explore , as title suggests, Windows of opportunity ([download here](https://cdn.discordapp.com/attachments/732682111462539276/1131972029415948368/opportunity_dist.zip#opportunity_dist.zip)), is very similar to Kernel ROP, but this time we have ioctls.
 
 
-The structure of post is similar to the previous one, first we analyze what we are given, reverse the vulnerable module, then we leak some addresses and finally we are root by exploiting some vuln.
 
+Continuing this series of linux kernel exploitation, today we will explore , as title suggests, Windows of opportunity from Imaginary CTF 2023!
 <!--excerpt-->
+
+([Download here](https://cdn.discordapp.com/attachments/732682111462539276/1131972029415948368/opportunity_dist.zip#opportunity_dist.zip)), is very similar to Kernel ROP, but this time we have ioctls. The structure of post is similar to the previous one, first we analyze what we are given, reverse the vulnerable module, then we leak some addresses and finally we are root by exploiting some vuln.
 
 # Reconnaissance
 The most important files are as always:
