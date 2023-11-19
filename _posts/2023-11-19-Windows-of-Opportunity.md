@@ -69,6 +69,7 @@ There is also device_write():
     00000172          __stack_chk_fail()
     00000172          noreturn
     0000016d      return __x86_return_thunk(0, 0, 0) __tailcall
+
 Here `_copy_from_user` is a vulnerable function where we will exploit a buffer overflow. There is also the Kernel stack cookie and in the pseudo c code is `int64_t rax = *(gsbase + 0x28)`.
 It is also nice to see what kernel does when booted, we need to check `initramfs/etc/init.d/rcS` it contains:
 
