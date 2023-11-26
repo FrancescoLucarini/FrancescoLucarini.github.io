@@ -314,7 +314,7 @@ int main(){
 		unsigned long leak[i];
 		read(fd, leak, sizeof(leak));
 		for (int j=0; j<i; j++){
-			printf("Cycle: %d ||| Idx: %d ||| Content: %lx\n",i, j, leak[j]);
+			printf("Cycle: %d |||  Idx: %d ||| Content: %lx\n",i, j, leak[j]);
 		}
 	}
 	*/
