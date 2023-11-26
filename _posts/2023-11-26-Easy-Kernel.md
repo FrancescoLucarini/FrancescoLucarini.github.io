@@ -6,7 +6,7 @@ tags: Hacking Pwn
 ---
 
 ##K3RN3L CTF 2021 easy kernel
-In this blog I will use this "easyish" challenge to introduce a cool technique that exploit `SIGNAL HANDLER`.
+In this blog I will use this "easyish" challenge to introduce a cool technique that exploit SIGNAL HANDLER.
 
 
 <!--excerpt-->
@@ -203,7 +203,7 @@ Because initial buffer size is 0x40 so we need to increase it, how?
     0000019b      else
     0000019b          MaxBuffer = arg3.d
     000001c4      return 0
-    
+
 In the sioctl function if we do something like ioctl(fd, 0x20, int x) MaxBuffer will be equals to x... 
 
     ioctl(fd, 0x20, 240);
