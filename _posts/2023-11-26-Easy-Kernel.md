@@ -6,7 +6,8 @@ tags: Hacking Pwn
 ---
 
 ##K3RN3L CTF 2021 easy kernel
-In this blog I will use this "easyish" challenge to introduce a cool technique that exploit `SIGNAL HANDLER` .
+In this blog I will use this "easyish" challenge to introduce a cool technique that exploit `SIGNAL HANDLER`.
+
 
 <!--excerpt-->
 
@@ -155,6 +156,7 @@ We can see that at index 14/16 there is the kernel canary, the kernel base is at
     
       Offset information:
              Mapped Area 0xffffffffba1c89f8 = 0xffffffffba000000 + 0x1c89f8
+
 So we can translate this into c code:
 
     unsigned long canary;
@@ -201,6 +203,7 @@ Because initial buffer size is 0x40 so we need to increase it, how?
     0000019b      else
     0000019b          MaxBuffer = arg3.d
     000001c4      return 0
+    
 In the sioctl function if we do something like ioctl(fd, 0x20, int x) MaxBuffer will be equals to x... 
 
     ioctl(fd, 0x20, 240);
