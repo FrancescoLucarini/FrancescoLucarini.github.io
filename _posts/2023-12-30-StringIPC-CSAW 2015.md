@@ -410,9 +410,10 @@ So VDSO is an ELF binary embedded in the kernel (see the address from gdb) that 
 For more info check [this article](https://man7.org/linux/man-pages/man7/vdso.7.html)
 
 # Attack Plan
--Leak VDSO base address
--Overwrite some of its function
--Get r00t!
+ 1. Leak VDSO base address
+ 2. Overwrite some of its function
+ 3. Get r00t!
+
 
 ## Leak
 From that article the trick is pretty neat, we have to use 'getauxval()', also for searching the functions we can use that dump just remember
